@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/emojiCarouse";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { CgNotes } from "react-icons/cg";
@@ -34,29 +33,8 @@ export default function Calendar({
   }, []);
 
   return (
-    <div className="calendar-container">
-      <div className="flex items-center justify-between py-4">
-        <h1 className="font-bold flex items-center gap-2">
-          <CgNotes className="w-5 h-5" /> Nhật kí thường ngày
-        </h1>
-        <div className="calendar-header flex items-center gap-4 justify-between">
-          <button onClick={handlePrevMonth}>
-            <FaArrowLeft />
-          </button>
-          <h2 className="flex gap-2 items-center font-bold capitalize text-xl">
-            {format(currentMonth, "MMMM, yyyy")}
-          </h2>
-          {Number(format(currentMonth, "M")) !== new Date().getMonth() + 1 ? (
-            <button onClick={handleNextMonth}>
-              <FaArrowRight />
-            </button>
-          ) : (
-            <button disabled>
-              <FaArrowRight className="text-slate-700" />
-            </button>
-          )}
-        </div>
-      </div>
+    <div className="calendar-container pb-4">
+      
       <div className="calendar-grid grid grid-cols-7">
         {calander.map((item: any) => (
           <div
@@ -82,7 +60,8 @@ export default function Calendar({
                       "bg-transparent"
                   )}
                 >
-                  {(item.time_at >= format(currentDay, "dd/MM/yyyy") && Number(format(currentMonth,"M")) === toMonth) ? (
+                  {item.time_at >= format(currentDay, "dd/MM/yyyy") &&
+                  Number(format(currentMonth, "M")) === toMonth ? (
                     <p className="font-bold">{item.day}</p>
                   ) : (
                     <div>
@@ -94,22 +73,11 @@ export default function Calendar({
             ) : (
               <Popover>
                 <PopoverTrigger asChild>
-                  <Carousel opts={{ loop: true }}>
-                    <CarouselContent>
-                      {item.list_emoji.map((emoji: any, index: number) => (
-                        <CarouselItem
-                          key={index}
-                          className="flex justify-center"
-                        >
-                          <img
-                            src={`/emoji/${emoji.emoji}`}
-                            alt="emoji"
-                            className="w-12 h-12"
-                          />
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                  </Carousel>
+                  <img
+                    src={`/emoji/${item.list_emoji[0].emoji}`}
+                    alt="emoji"
+                    className="w-12 h-12 cursor-pointer"
+                  />
                 </PopoverTrigger>
                 <PopoverContent className="flex gap-2 bg-black border-slate-800 flex-wrap max-w-[200px] justify-around">
                   {item.list_emoji.map((item: any, index: number) => (
@@ -124,12 +92,20 @@ export default function Calendar({
               </Popover>
             )}
             <p className="font-bold">
-              {((item.time_at <= format(currentDay, "dd/MM/yyyy") && Number(format(currentMonth,"M")) === toMonth)) && <p className="font-bold text-sm text-slate-400">{item.day}</p>}
+              {item.time_at <= format(currentDay, "dd/MM/yyyy") &&
+                Number(format(currentMonth, "M")) === toMonth && (
+                  <p className="font-bold text-sm text-slate-400">{item.day}</p>
+                )}
             </p>
             <p className="font-bold">
-              {((item.time_at > format(currentDay, "dd/MM/yyyy") && Number(format(currentMonth,"M")) === toMonth)) && <p className="opacity-0">###</p>}
+              {item.time_at > format(currentDay, "dd/MM/yyyy") &&
+                Number(format(currentMonth, "M")) === toMonth && (
+                  <p className="opacity-0">###</p>
+                )}
             </p>
-            {Number(format(currentMonth,"M")) !== toMonth && <p className="font-bold text-sm text-slate-400">{item.day}</p>}
+            {Number(format(currentMonth, "M")) !== toMonth && (
+              <p className="font-bold text-sm text-slate-400">{item.day}</p>
+            )}
           </div>
         ))}
       </div>

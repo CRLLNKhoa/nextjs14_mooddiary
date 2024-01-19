@@ -16,6 +16,8 @@ import Calendar from "@/components/mainComponent/Calendar";
 import { Skeleton } from "@/components/ui/skeleton";
 import AddButton from "@/components/mainComponent/AddButton";
 import { toast } from "sonner";
+import { CgNotes } from "react-icons/cg";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 export default function Home() {
   dayjs.locale("vi");
@@ -62,7 +64,7 @@ export default function Home() {
         label: "Undo",
         onClick: () => console.log("Undo"),
       },
-    })
+    });
   }
 
   if (!daysInMonth) {
@@ -87,16 +89,46 @@ export default function Home() {
   }
 
   return (
-    <div className="px-4 flex flex-col relative h-full">
-      <Calendar
-        calander={daysInMonth}
-        handleNextMonth={goToNextMonth}
-        handlePrevMonth={goToPreviousMonth}
-        currentMonth={currentMonth}
-        currentDay={currentDate}
-      />
-      <div className="absolute bottom-4 right-8">
+    <div className="px-4 flex flex-col relative h-full py-4">
+      <div className="flex justify-between bg-slate-950 p-4 items-center">
+        <div className="flex flex-col">
+          <h1 className="font-bold flex items-center gap-2">
+            Nhật kí thường ngày
+          </h1>
+          <p className="text-xs text-muted-foreground">
+            Ghi lại cảm xúc của bạn hàng ngày
+          </p>
+        </div>
+        <CgNotes className="w-5 h-5" />
+      </div>
+      <div className="flex items-center justify-between border-b border-slate-900 my-4 pb-2 px-4">
         <AddButton handleAddDiary={handleAddDiary} />
+        <div className="calendar-header flex items-center gap-4 justify-between">
+          <button onClick={goToPreviousMonth}>
+            <FaArrowLeft />
+          </button>
+          <h2 className="flex gap-2 items-center font-bold capitalize text-xl">
+            {format(currentMonth, "MMMM, yyyy")}
+          </h2>
+          {Number(format(currentMonth, "M")) !== new Date().getMonth() + 1 ? (
+            <button onClick={goToNextMonth}>
+              <FaArrowRight />
+            </button>
+          ) : (
+            <button disabled>
+              <FaArrowRight className="text-slate-700" />
+            </button>
+          )}
+        </div>
+      </div>
+      <div className="rounded-lg">
+        <Calendar
+          calander={daysInMonth}
+          handleNextMonth={goToNextMonth}
+          handlePrevMonth={goToPreviousMonth}
+          currentMonth={currentMonth}
+          currentDay={currentDate}
+        />
       </div>
     </div>
   );

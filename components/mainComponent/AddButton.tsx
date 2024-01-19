@@ -58,9 +58,7 @@ export default function AddButton({ handleAddDiary }: any) {
   return (
     <Dialog>
       <DialogTrigger>
-        <div className="p-2 bg-white rounded-full text-black text-3xl cursor-pointer animate-bounce">
-          <IoMdAdd />
-        </div>
+        <Button variant={'outline'}><IoMdAdd className="mr-2" /> Ghi nhật ký</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
