@@ -65,17 +65,17 @@ const menu = {
     {
       icon: "pay_icon.svg",
       title: "Thông tin mua hàng",
-      link: "/setting/event",
+      link: "/setting/pay",
     },
     {
       icon: "help_icon.svg",
       title: "Trung tâm trợ giúp",
-      link: "/setting/event",
+      link: "/setting/help",
     },
     {
       icon: "contact_icon.svg",
       title: "Liên hệ chúng tôi",
-      link: "/setting/event",
+      link: "/setting/contact",
     },
   ],
 };

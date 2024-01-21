@@ -8,9 +8,6 @@ export default function Page() {
   const setTheme = useThemeStore((state: any) => state.setTheme);
   const themeSelect = useThemeStore((state: any) => state.themeSelect);
   return <div>
-    <h1>{themeSelect}</h1>
-    <Button onClick={() => setTheme(1)}>1</Button>
-    <Button onClick={() => setTheme(2)}>2</Button>
-    <Button onClick={() => setTheme(3)}>3</Button>
+   <h1></h1>
   </div>;
 }
