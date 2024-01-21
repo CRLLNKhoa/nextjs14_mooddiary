@@ -28,7 +28,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="relative grid grid-cols-5 h-screen sm:pb-12 md:pb-12 lg:pb-0">
+          <main className="relative grid grid-cols-5 h-screen pb-12 md:pb-12 lg:pb-0">
             {/* <div className="absolute bottom-0 left-0 right-0 bg-black p-4 flex justify-between items-center">
 
             </div> */}
