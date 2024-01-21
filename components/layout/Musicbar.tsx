@@ -1,15 +1,18 @@
+"use client"
 import React from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
 import {
   TbPlayerTrackNextFilled,
   TbPlayerTrackPrevFilled,
 } from "react-icons/tb";
-import ReactPlayer from "react-player";
+import useSound from 'use-sound';
 
 export default function Musicbar() {
+  const [play] = useSound("/sounds/pop.mp3");
   return (
-    <aside className="flex flex-col p-4 bg-black gap-4 overflow-y-auto border-l border-slate-800">
+    <aside className="flex flex-col p-4 h-full bg-black gap-4 overflow-y-auto border-l border-slate-800">
       <h1 className="font-bold">XOA DỊU CẢM XÚC</h1>
+      <button onClick={play}>Boop!</button>
       <div className="flex flex-col justify-center items-center">
         <img
           className="animate-spin-slow w-20"

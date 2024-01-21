@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Musicbar from "@/components/layout/Musicbar";
 import { Toaster } from "@/components/ui/sonner";
 import SideBarMobile from "@/components/layout/SideBarMobile";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: {
