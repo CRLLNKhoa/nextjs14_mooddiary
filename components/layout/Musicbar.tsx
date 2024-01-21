@@ -5,7 +5,7 @@ import {
   TbPlayerTrackNextFilled,
   TbPlayerTrackPrevFilled,
 } from "react-icons/tb";
-import useSound from 'use-sound';
+import useSound from "use-sound";
 
 export default function Musicbar() {
   const [play] = useSound("/sounds/pop.mp3");
