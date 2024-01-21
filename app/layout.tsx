@@ -3,7 +3,8 @@ import "./globals.css";
 import Sidebar from "@/components/layout/Sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
 import Musicbar from "@/components/layout/Musicbar";
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner";
+import SideBarMobile from "@/components/layout/SideBarMobile";
 
 export const metadata: Metadata = {
   title: {
@@ -27,13 +28,22 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="relative grid grid-cols-5 h-screen">
+          <main className="relative grid grid-cols-5 h-screen sm:pb-12 md:pb-12 lg:pb-0">
             {/* <div className="absolute bottom-0 left-0 right-0 bg-black p-4 flex justify-between items-center">
 
             </div> */}
-            <div className="hidden lg:block"><Sidebar /></div>
-            <div className="col-span-5 lg:col-span-3 bg-black overflow-y-auto menuSide">{children}</div>
-            <div className="hidden lg:block"><Musicbar /></div>
+            <div className="hidden lg:block">
+              <Sidebar />
+            </div>
+            <div className="col-span-5 lg:col-span-3 bg-black overflow-y-auto menuSide">
+              {children}
+            </div>
+            <div className="hidden lg:block">
+              <Musicbar />
+            </div>
+            <div className="block lg:hidden">
+              <SideBarMobile />
+            </div>
           </main>
           <Toaster />
         </ThemeProvider>

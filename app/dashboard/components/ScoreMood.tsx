@@ -161,7 +161,13 @@ export default function ScoreMood() {
   );
 }
 
-function MoodScore(props: {
+function MoodScore({
+  img,
+  score,
+  totalScore,
+  title,
+  type,
+}: {
   img: string;
   score: number;
   totalScore: number;
@@ -171,37 +177,37 @@ function MoodScore(props: {
   return (
     <div className="flex gap-2 items-start">
       <img
-        src={`/emoji/${props.img}`}
-        alt={props.img}
+        src={`/emoji/${img}`}
+        alt={img}
         className="w-8 h-8"
       />
       <div className="flex flex-col flex-1">
         <div className="h-3 bg-slate-600 w-full overflow-hidden rounded-full relative">
           <div
             style={{
-              width: `${Math.floor((props.score / props.totalScore) * 100)}%`,
+              width: `${Math.floor((score / totalScore) * 100)}%`,
             }}
             className={cn(
               "absolute left-0 h-3 top-0 bottom-0",
-              props.type === 1 && `bg-[#FF4924] `,
-              props.type === 2 && `bg-[#66C2F1] `,
-              props.type === 3 && `bg-[#28EB69] `,
-              props.type === 4 && `bg-[#A668E3] `,
-              props.type === 5 && `bg-[#FAD314] `,
-              props.type === 6 && `bg-[#87B0FF] `,
-              props.type === 7 && `bg-[#7C62C7] `,
-              props.type === 8 && `bg-[#24C6BB] `,
-              props.type === 9 && `bg-[#55ECB9] `,
-              props.type === 10 && `bg-[#FEB83F] `,
-              props.type === 11 && `bg-[#AAF516] `
+              type === 1 && `bg-[#FF4924] `,
+              type === 2 && `bg-[#66C2F1] `,
+              type === 3 && `bg-[#28EB69] `,
+              type === 4 && `bg-[#A668E3] `,
+              type === 5 && `bg-[#FAD314] `,
+              type === 6 && `bg-[#87B0FF] `,
+              type === 7 && `bg-[#7C62C7] `,
+              type === 8 && `bg-[#24C6BB] `,
+              type === 9 && `bg-[#55ECB9] `,
+              type === 10 && `bg-[#FEB83F] `,
+              type === 11 && `bg-[#AAF516] `
             )}
           ></div>
         </div>
         <div className="flex justify-between items-center pr-2 mt-1 text-muted-foreground font-bold">
-          <p className="text-xs">{props.title}</p>
+          <p className="text-xs">{title}</p>
           <p className="text-xs">
-            {props.score} / {props.totalScore}{" "}
-            {`( ${Math.floor((props.score / props.totalScore) * 100)}% )`}
+            {score} / {totalScore}{" "}
+            {`( ${Math.floor((score / totalScore) * 100)}% )`}
           </p>
         </div>
       </div>

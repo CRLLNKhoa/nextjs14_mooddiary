@@ -35,7 +35,7 @@ export default function Calendar({
   return (
     <div className="calendar-container pb-4">
       
-      <div className="calendar-grid grid grid-cols-7">
+      <div className="calendar-grid grid grid-cols-5 lg:grid-cols-7">
         {calander.map((item: any) => (
           <div
             key={item.day}
